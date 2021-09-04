@@ -1,0 +1,33 @@
+name: useEffect and fetchAPI
+
+on:
+
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2-beta
+        with:
+          version: 14
+          
+      - name: Install Dependencies
+        run: npm install
+        
+      - name: Make Build
+        run: npm run build
+        
+      - name: Install surge
+        run: npm install -g surge
+
+      - name: Deploy
+        run: surge ./build http://useeffect-fetchapi.surge.sh/ --token ${{ secrets.SURGE_TOKEN }}
