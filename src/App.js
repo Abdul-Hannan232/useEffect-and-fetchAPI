@@ -9,7 +9,7 @@ function App() {
       const response = await fetch("https://api.github.com/users/abdul-hannan232/repos")
       const value = await response.json();
 
-      console.log(value, "value");
+      // console.log(value, "value");
       setData(value);
     }
 
